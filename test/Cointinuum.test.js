@@ -1,6 +1,8 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
+// npx hardhat test
+
 describe("Cointinuum", () => {
   let Token
   let ctmToken
