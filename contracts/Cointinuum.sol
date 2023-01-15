@@ -18,7 +18,7 @@ contract Cointinuum {
     uint256 private initialSupply;
     uint256 public _totalSupply;
     address private owner;
-    uint256 public constant MAX_TOTAL_SUPPLY = 110000000; // MAX SUPPLY CONST
+    uint256 public constant MAX_TOTAL_SUPPLY = 110000000*10**18; // MAX SUPPLY CONST
 
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowed;
@@ -59,10 +59,10 @@ contract Cointinuum {
         return allowed[tokenOwner][spender];
     }
 
-    function transfer(address to, uint tokens) public returns (bool) {
-        require(to != address(0));
+    function transfer(address to, uint256 tokens) public returns (bool) {
+        require(to != address(0), "Address cannot be 0x0...");
         require(tokens <= balances[msg.sender]);
-        require(_totalSupply + tokens <= MAX_TOTAL_SUPPLY); // MAX SUPPLY DOUBLE CHECK
+        require(_totalSupply + tokens <= MAX_TOTAL_SUPPLY, "Total supply can't exceed the maximum supply"); // MAX SUPPLY DOUBLE CHECK
 
         balances[msg.sender] -= tokens;
         balances[to] += tokens;
@@ -71,10 +71,10 @@ contract Cointinuum {
     }
 
     function transferFrom(address from, address to, uint256 tokens) public returns (bool) {
-        require(to != address(0));
+        require(to != address(0), "Address cannot be 0x0...");
         require(tokens <= balances[from]);
         require(tokens <= allowed[from][msg.sender]);
-        require(_totalSupply + tokens <= MAX_TOTAL_SUPPLY); // MAX SUPPLY TRIPLE CHECK
+        require(_totalSupply + tokens <= MAX_TOTAL_SUPPLY, "Total supply can't exceed the maximum supply"); // MAX SUPPLY TRIPLE CHECK
 
         balances[from] -= tokens;
         allowed[from][msg.sender] -= tokens;
