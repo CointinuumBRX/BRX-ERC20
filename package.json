@@ -18,6 +18,7 @@
   "homepage": "https://github.com/CointinuumBRX/CTM#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "@openzeppelin/hardhat-upgrades": "^1.22.0",
     "hardhat": "^2.12.6"
   },
   "dependencies": {

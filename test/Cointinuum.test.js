@@ -9,7 +9,8 @@ describe("Cointinuum", () => {
   let owner
   let addr1
   let addr2
-
+  const totalSupply = 110000000
+  
   before(async () => {
     [owner, addr1, addr2] = await ethers.getSigners();
     Token = await ethers.getContractFactory("Cointinuum");
@@ -29,42 +30,50 @@ describe("Cointinuum", () => {
 
   it("Should have 18 decimals", async () => {
     const decimals = await ctmToken.decimals();
-    expect(decimals.toNumber()).to.equal(18);
+    expect(decimals).to.equal(18);
   });
 
   it("Should have a total supply of 110000000", async () => {
     const totalSupply = await ctmToken.totalSupply();
-    expect(totalSupply.toNumber()).to.equal(110000000 * 10 ** 18);
+    expect(totalSupply).to.equal(ethers.utils.parseEther("110000000"));
   });
 
-  it("Should have the correct balance for the owner (msg.sener)", async () => {
-    const balance = await ctmToken.balanceOf(await owner.getAddress());
-    expect(balance.toNumber()).to.equal(110000000 * 10 ** 18);
+  it("Should have the correct balance for the owner (msg.sender)", async () => {
+    const balance = await ctmToken.balanceOf(owner.address);
+    expect(balance).to.equal(ethers.utils.parseEther("110000000"));
   });
 
   it("Should transfer tokens correctly", async () => {
-    const initialBalance = await ctmToken.balanceOf(await addr1.getAddress());
-    expect(initialBalance.toNumber()).to.equal(0);
+    const initialBalance = await ctmToken.balanceOf(addr1.address);
+    expect(initialBalance).to.equal(0);
 
-    const transferAmount = 10 ** 18;
-    await ctmToken.transfer(await addr1.getAddress(), transferAmount);
+    const transferAmount = 111111111;
+    await ctmToken.transfer(addr1.address, transferAmount);
 
-    const finalBalance = await ctmToken.balanceOf(await addr1.getAddress());
-    expect(finalBalance.toNumber()).to.equal(transferAmount);
+    const finalBalance = await ctmToken.balanceOf(addr1.address);
+    expect(finalBalance).to.equal(transferAmount);
   });
 
   it("Should approve and transferFrom tokens correctly", async () => {
-    const initialBalance = await ctmToken.balanceOf(await addr2.getAddress());
-    expect(initialBalance.toNumber()).to.equal(0);
+    const initialBalance = await ctmToken.balanceOf(await addr2.address);
+    expect(initialBalance).to.equal(0);
 
-    const approveAmount = 10 ** 18;
-    await ctmToken.approve(await addr1.getAddress(), approveAmount);
-    expect(await ctmToken.allowance(await owner.getAddress(), await addr1.getAddress())).to.equal(approveAmount);
+    const transferAmount = 11111111;
+    ctmToken.transfer(addr2.address, transferAmount);
+    const iBalance = await ctmToken.balanceOf(addr2.address);
+    expect(iBalance).to.equal(transferAmount);
 
-    const transferAmount = 5 * 10 ** 17;
-    await ctmToken.transferFrom(await owner.getAddress(), await addr2.getAddress(), transferAmount);
+    const approveAmount = 11111111111;
+    await ctmToken.connect(addr2).approve(owner.address, approveAmount);
+    expect(await ctmToken.allowance(addr2.address, owner.address)).to.equal(approveAmount);
 
-    const finalBalance = await ctmToken.balanceOf(await addr2.getAddress());
-    expect(finalBalance.toNumber()).to.equal(transferAmount);
+    await ctmToken.transferFrom( addr2.address, owner.address, transferAmount);
+
+    const finalBalance = await ctmToken.balanceOf(addr2.address);
+    expect(finalBalance).to.equal(0);
+
+
+
   });
+
 });
