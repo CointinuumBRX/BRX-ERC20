@@ -9,9 +9,10 @@ pragma solidity ^0.8.17;
 // Total supply: 110000000
 // Decimals    : 18
 //--------------------------------------
-
-contract Cointinuum {
-
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+contract Cointinuum is ERC20{
+/// @notice ERC-20 has all these
+/*    
     bytes32 public name;
     bytes32 public symbol;
     uint256 public decimals; // Looking into changing this value to a lower uint value for saving gas
@@ -25,19 +26,26 @@ contract Cointinuum {
 
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
-
-    constructor() {
+*/
+/*
+    constructor() override ERC20("Cointinuum", "CTM") {
 
         name = "Cointinuum";
         symbol = "CTM";
-        decimals = 18;
-        _totalSupply = 110000000 * 10 ** uint256(decimals);
+        decimals = 18;  // decimals is a constant in ERC20.sol need to override the function if you want something else
+        totalSupply = 110000000 * 10 ** uint256(decimals);
         require(_totalSupply <= MAX_TOTAL_SUPPLY); // MAX SUPPLY CHECK 
         initialSupply = _totalSupply;
-        balances[msg.sender] = _totalSupply;
+        _balances[msg.sender] = 110000000 * 10 ** uint256(decimals);
         owner = msg.sender;
     }
+    */
 
+    constructor() ERC20("Cointinuum", "CTM") {
+        _mint(msg.sender, 110000000 * 10 ** uint256(decimals()));
+    }
+
+/*
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
     }
@@ -82,4 +90,5 @@ contract Cointinuum {
         emit Transfer(from, to, tokens);
         return true;
     }
+    */
 }
