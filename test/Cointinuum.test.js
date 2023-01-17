@@ -1,8 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-// npx hardhat test
-
 describe("Cointinuum", () => {
   let Token
   let ctmToken
@@ -72,8 +70,5 @@ describe("Cointinuum", () => {
     const finalBalance = await ctmToken.balanceOf(addr2.address);
     expect(finalBalance).to.equal(0);
 
-
-
   });
-
 });
