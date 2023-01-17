@@ -2,9 +2,12 @@
 // but useful for running the script in a standalone fashion through `node <script>`.
 
 //--------------------------------------
-//  Deployment steps:
+// Local Deployment Commands:
 // npx hardhat node
 // npx hardhat run --network localhost scripts/deploy.js
+// 
+// Goerli Deploy Commands:
+// npx hardhat run --network goerli scripts/deploy.js
 //--------------------------------------
 
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
