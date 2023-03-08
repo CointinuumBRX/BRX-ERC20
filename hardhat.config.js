@@ -4,18 +4,23 @@ require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.17",
+  solidity: "0.8.18",
   networks: {
     goerli: {
-
-      url: process.env.NODE_ENDPOINT,
-      accounts: [process.env.PRIVATE_KEY]
+      url: process.env.GOERLI_ENDPOINT,
+      chainId: 5,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    mumbai: {
+      url: process.env.MUMBAI_ENDPOINT,
+      chainId: 80001,
+      accounts: [process.env.PRIVATE_KEY],
     }
   },
   etherscan: {
     apiKey: process.env.API_KEY
   },
   gasReporter: {
-    enabled: false,
+    enabled: true,
   },
 };
