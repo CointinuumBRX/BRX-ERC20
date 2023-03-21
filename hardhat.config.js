@@ -15,6 +15,11 @@ module.exports = {
       url: process.env.MUMBAI_ENDPOINT,
       chainId: 80001,
       accounts: [process.env.PRIVATE_KEY],
+    },
+    mainnet: {
+      url: process.env.MAINNET_ENDPOINT,
+      chainId: 1,
+      accounts: [process.env.PRIVATE_KEY]
     }
   },
   etherscan: {
