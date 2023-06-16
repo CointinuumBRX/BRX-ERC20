@@ -1,11 +1,14 @@
 # CTM Token Contract
 
-Try running some of the following tasks:
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
+npm i
+edit tokenlist.json to verify addresses for holding CTM
+cp .env.example .env
+edit .env, paste in your PRIVATE_KEY
+
+npx hardhat run scripts/distribute.js
+
+npx hardhat run scripts/distribute.js --network mainnet
+
 ```

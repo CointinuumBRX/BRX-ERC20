@@ -31,7 +31,7 @@ console.log(tokenholders)
     myvalue = ethers.utils.parseEther(tokenholders[i].balance);
     value = myvalue;
     //    value = ethers.BigNumber.from((tokenholders[i].balance*10^10));
-    console.log(`Transferring ${value} to ${tokenholders[i].address}`)
+    console.log(`${i}Transferring ${value} to ${tokenholders[i].address}`)
     await cointinuum.transfer(tokenholders[i].address, value);
   }
 
