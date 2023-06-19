@@ -18,12 +18,12 @@ const hre = require("hardhat");
 
 async function main() {
 
-  const Cointinuum = await hre.ethers.getContractFactory("Cointinuum");
-  const cointinuum = await Cointinuum.deploy();
+  const Bricks = await hre.ethers.getContractFactory("Bricks");
+  const bricks = await Bricks.deploy();
 
-  await cointinuum.deployed();
+  await bricks.deployed();
 
-  console.log(`Cointinuum was deployed to: ${cointinuum.address}`);
+  console.log(`Bricks was deployed to: ${bricks.address}`);
 }
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
