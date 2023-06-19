@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 //--------------------------------------
-// Cointinuum: ERC20 Token contract
+// Bricks: ERC20 Token contract
 //
-// Symbol      : CTM
-// Name        : Cointinuum
+// Symbol      : BRX
+// Name        : Bricks
 // Total supply: 110000000
 // Decimals    : 18
 //--------------------------------------
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-contract Cointinuum is ERC20{
+contract Bricks is ERC20{
 
-    constructor() ERC20("Cointinuum", "CTM") {
+    constructor() ERC20("Bricks", "BRX") {
         _mint(msg.sender, 110000000 * 10 ** uint256(decimals()));
     }
 }

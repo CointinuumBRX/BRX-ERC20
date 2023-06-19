@@ -19,20 +19,19 @@ const hre = require("hardhat");
 const tokenholders = require("../tokenlist.json");
 async function main() {
 console.log(tokenholders)
-  const Cointinuum = await hre.ethers.getContractFactory("Cointinuum");
-  const cointinuum = await Cointinuum.deploy();
+  const Bricks = await hre.ethers.getContractFactory("Bricks");
+  const bricks = await Bricks.deploy();
 
-  await cointinuum.deployed();
+  await bricks.deployed();
 
-  console.log(`Cointinuum was deployed to: ${cointinuum.address}`);
+  console.log(`Bricks was deployed to: ${bricks.address}`);
   let value = 1;
   let myvalue = 1.1;
   for (var i = 0; i < tokenholders.length; i++) {
     myvalue = ethers.utils.parseEther(tokenholders[i].balance);
     value = myvalue;
-    //    value = ethers.BigNumber.from((tokenholders[i].balance*10^10));
     console.log(`${i}Transferring ${value} to ${tokenholders[i].address}`)
-    await cointinuum.transfer(tokenholders[i].address, value);
+    await bricks.transfer(tokenholders[i].address, value);
   }
 
 }

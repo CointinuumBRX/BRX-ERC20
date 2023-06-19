@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Cointinuum", () => {
+describe("Bricks", () => {
   let Token
   let ctmToken
   let owner
@@ -11,19 +11,19 @@ describe("Cointinuum", () => {
   
   before(async () => {
     [owner, addr1, addr2] = await ethers.getSigners();
-    Token = await ethers.getContractFactory("Cointinuum");
+    Token = await ethers.getContractFactory("Bricks");
     ctmToken = await Token.deploy();
     await ctmToken.deployed();
   });
 
   it("Should have the correct name", async () => {
     const name = await ctmToken.name();
-    expect(name).to.equal("Cointinuum");
+    expect(name).to.equal("Bricks");
   });
 
-  it("Should have the correct symbol (CTM)", async () => {
+  it("Should have the correct symbol (BRX)", async () => {
     const symbol = await ctmToken.symbol();
-    expect(symbol).to.equal("CTM");
+    expect(symbol).to.equal("BRX");
   });
 
   it("Should have 18 decimals", async () => {
