@@ -3,14 +3,15 @@ running distribute.js with deploy Bricks token and distribute holdings
 according to the file 'tokenlist.json'
 
 'tokenlist.json' is generated using the scripts in migrateToken directory
+this contains the current token from the CTM contract
 
 ```shell
 npm i
-edit tokenlist.json to verify addresses to get holdings CTM
 cp .env.example .env
-edit .env, paste in your PRIVATE_KEY
+// edit .env, paste in YOUR PRIVATE_KEY
 
-npx hardhat run scripts/distribute.js  // for a test run on hardhat network
+// for a test run on hardhat network, will print all distributions
+npx hardhat run scripts/distribute.js  
 
 npx hardhat run scripts/distribute.js --network mainnet
 
