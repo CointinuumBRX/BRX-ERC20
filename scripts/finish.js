@@ -20,7 +20,7 @@ const tokenholders = require("../moreaddresses.json");
 async function main() {
 console.log(tokenholders)
 const bricksAddress = "0x5ce6f2C0E2A1b4540894f286254bF13B1110D240"
-const bricks = await hre.ethers.getContractFactory("Bricks", bricksAddress);
+const bricks = await hre.ethers.getContractAt("Bricks", bricksAddress);
   
 
 console.log(`Bricks was deployed to: ${bricks.address}`);
