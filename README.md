@@ -1,18 +1,5 @@
-# Bricks Token Contract
-running distribute.js with deploy Bricks token and distribute holdings
-according to the file 'tokenlist.json'
+# Bricks (BRX) ERC20 Token
 
-'tokenlist.json' is generated using the scripts in migrateToken directory
-this contains the current token from the CTM contract
+### Welcome to the future of Real Estate Investing
 
-```shell
-npm i
-cp .env.example .env
-// edit .env, paste in YOUR PRIVATE_KEY
-
-// for a test run on hardhat network, will print all distributions
-npx hardhat run scripts/distribute.js  
-
-npx hardhat run scripts/distribute.js --network mainnet
-
-```
+![BRX Bricks Only](https://github.com/CointinuumBRX/BRX-ERC20/assets/83500098/26b6afb4-129f-47ce-92b4-8d747b64af2c)
